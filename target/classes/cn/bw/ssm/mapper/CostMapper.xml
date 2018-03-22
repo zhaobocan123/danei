@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bw.ssm.mapper.CostMapper" >
+  <resultMap id="BaseResultMap" type="cn.bw.ssm.pojo.Cost" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="BASE_DURATION" property="baseDuration" jdbcType="INTEGER" />
+    <result column="BASE_COST" property="baseCost" jdbcType="DOUBLE" />
+    <result column="UNIT_COST" property="unitCost" jdbcType="DOUBLE" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="DESCR" property="descr" jdbcType="VARCHAR" />
+    <result column="CREATIME" property="creatime" jdbcType="TIMESTAMP" />
+    <result column="STARTIME" property="startime" jdbcType="DATE" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NAME, BASE_DURATION, BASE_COST, UNIT_COST, STATUS, DESCR, CREATIME, STARTIME, 
+    COST_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bw.ssm.pojo.CostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cost
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cost
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bw.ssm.pojo.CostExample" >
+    delete from cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bw.ssm.pojo.Cost" >
+    insert into cost (ID, NAME, BASE_DURATION, 
+      BASE_COST, UNIT_COST, STATUS, 
+      DESCR, CREATIME, STARTIME, 
+      COST_TYPE)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{baseDuration,jdbcType=INTEGER}, 
+      #{baseCost,jdbcType=DOUBLE}, #{unitCost,jdbcType=DOUBLE}, #{status,jdbcType=CHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{creatime,jdbcType=TIMESTAMP}, #{startime,jdbcType=DATE}, 
+      #{costType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bw.ssm.pojo.Cost" >
+    insert into cost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="baseDuration != null" >
+        BASE_DURATION,
+      </if>
+      <if test="baseCost != null" >
+        BASE_COST,
+      </if>
+      <if test="unitCost != null" >
+        UNIT_COST,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="descr != null" >
+        DESCR,
+      </if>
+      <if test="creatime != null" >
+        CREATIME,
+      </if>
+      <if test="startime != null" >
+        STARTIME,
+      </if>
+      <if test="costType != null" >
+        COST_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseCost != null" >
+        #{baseCost,jdbcType=DOUBLE},
+      </if>
+      <if test="unitCost != null" >
+        #{unitCost,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        #{startime,jdbcType=DATE},
+      </if>
+      <if test="costType != null" >
+        #{costType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bw.ssm.pojo.CostExample" resultType="java.lang.Integer" >
+    select count(*) from cost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cost
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseDuration != null" >
+        BASE_DURATION = #{record.baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="record.baseCost != null" >
+        BASE_COST = #{record.baseCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unitCost != null" >
+        UNIT_COST = #{record.unitCost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.descr != null" >
+        DESCR = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatime != null" >
+        CREATIME = #{record.creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startime != null" >
+        STARTIME = #{record.startime,jdbcType=DATE},
+      </if>
+      <if test="record.costType != null" >
+        COST_TYPE = #{record.costType,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cost
+    set ID = #{record.id,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      BASE_DURATION = #{record.baseDuration,jdbcType=INTEGER},
+      BASE_COST = #{record.baseCost,jdbcType=DOUBLE},
+      UNIT_COST = #{record.unitCost,jdbcType=DOUBLE},
+      STATUS = #{record.status,jdbcType=CHAR},
+      DESCR = #{record.descr,jdbcType=VARCHAR},
+      CREATIME = #{record.creatime,jdbcType=TIMESTAMP},
+      STARTIME = #{record.startime,jdbcType=DATE},
+      COST_TYPE = #{record.costType,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bw.ssm.pojo.Cost" >
+    update cost
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        BASE_DURATION = #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseCost != null" >
+        BASE_COST = #{baseCost,jdbcType=DOUBLE},
+      </if>
+      <if test="unitCost != null" >
+        UNIT_COST = #{unitCost,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        CREATIME = #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        STARTIME = #{startime,jdbcType=DATE},
+      </if>
+      <if test="costType != null" >
+        COST_TYPE = #{costType,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bw.ssm.pojo.Cost" >
+    update cost
+    set NAME = #{name,jdbcType=VARCHAR},
+      BASE_DURATION = #{baseDuration,jdbcType=INTEGER},
+      BASE_COST = #{baseCost,jdbcType=DOUBLE},
+      UNIT_COST = #{unitCost,jdbcType=DOUBLE},
+      STATUS = #{status,jdbcType=CHAR},
+      DESCR = #{descr,jdbcType=VARCHAR},
+      CREATIME = #{creatime,jdbcType=TIMESTAMP},
+      STARTIME = #{startime,jdbcType=DATE},
+      COST_TYPE = #{costType,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

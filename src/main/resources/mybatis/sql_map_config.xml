@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 全局的配置 -->
+	<!-- <settings></settings> -->
+	<!-- 别名 -->
+	<typeAliases>
+		<package name="cn.bw.ssm.pojo"/>
+	</typeAliases>
+    <!-- 
+    	配置mapper.xml 
+    	Mapper接口和Mapper的配置文件同名并且在同一个包下  spring在扫描mapper包的同时也会加载mapper的配置文件
+    -->
+	<mappers>
+	</mappers>
+</configuration>

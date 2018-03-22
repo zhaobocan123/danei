@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bw.ssm.mapper.AccountShawnMapper" >
+  <resultMap id="BaseResultMap" type="cn.bw.ssm.pojo.AccountShawn" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RECOMMENDER_ID" property="recommenderId" jdbcType="INTEGER" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWD" property="loginPasswd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="PAUSE_DATE" property="pauseDate" jdbcType="DATE" />
+    <result column="CLOSE_DATE" property="closeDate" jdbcType="DATE" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="IDCARD_NO" property="idcardNo" jdbcType="CHAR" />
+    <result column="BIRTHDATE" property="birthdate" jdbcType="DATE" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="OCCUPATION" property="occupation" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="MAILADDRESS" property="mailaddress" jdbcType="VARCHAR" />
+    <result column="ZIPCODE" property="zipcode" jdbcType="CHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="DATE" />
+    <result column="LAST_LOGIN_IP" property="lastLoginIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, RECOMMENDER_ID, LOGIN_NAME, LOGIN_PASSWD, STATUS, CREATE_DATE, PAUSE_DATE, CLOSE_DATE, 
+    REAL_NAME, IDCARD_NO, BIRTHDATE, GENDER, OCCUPATION, TELEPHONE, EMAIL, MAILADDRESS, 
+    ZIPCODE, QQ, LAST_LOGIN_TIME, LAST_LOGIN_IP
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.bw.ssm.pojo.AccountShawnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account_shawn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_shawn
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from account_shawn
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.bw.ssm.pojo.AccountShawnExample" >
+    delete from account_shawn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.bw.ssm.pojo.AccountShawn" >
+    insert into account_shawn (ID, RECOMMENDER_ID, LOGIN_NAME, 
+      LOGIN_PASSWD, STATUS, CREATE_DATE, 
+      PAUSE_DATE, CLOSE_DATE, REAL_NAME, 
+      IDCARD_NO, BIRTHDATE, GENDER, 
+      OCCUPATION, TELEPHONE, EMAIL, 
+      MAILADDRESS, ZIPCODE, QQ, 
+      LAST_LOGIN_TIME, LAST_LOGIN_IP)
+    values (#{id,jdbcType=INTEGER}, #{recommenderId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, 
+      #{loginPasswd,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=DATE}, 
+      #{pauseDate,jdbcType=DATE}, #{closeDate,jdbcType=DATE}, #{realName,jdbcType=VARCHAR}, 
+      #{idcardNo,jdbcType=CHAR}, #{birthdate,jdbcType=DATE}, #{gender,jdbcType=CHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mailaddress,jdbcType=VARCHAR}, #{zipcode,jdbcType=CHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=DATE}, #{lastLoginIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bw.ssm.pojo.AccountShawn" >
+    insert into account_shawn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="recommenderId != null" >
+        RECOMMENDER_ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE,
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="idcardNo != null" >
+        IDCARD_NO,
+      </if>
+      <if test="birthdate != null" >
+        BIRTHDATE,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="mailaddress != null" >
+        MAILADDRESS,
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME,
+      </if>
+      <if test="lastLoginIp != null" >
+        LAST_LOGIN_IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recommenderId != null" >
+        #{recommenderId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="pauseDate != null" >
+        #{pauseDate,jdbcType=DATE},
+      </if>
+      <if test="closeDate != null" >
+        #{closeDate,jdbcType=DATE},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardNo != null" >
+        #{idcardNo,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailaddress != null" >
+        #{mailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=DATE},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.bw.ssm.pojo.AccountShawnExample" resultType="java.lang.Integer" >
+    select count(*) from account_shawn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account_shawn
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommenderId != null" >
+        RECOMMENDER_ID = #{record.recommenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginName != null" >
+        LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPasswd != null" >
+        LOGIN_PASSWD = #{record.loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.pauseDate != null" >
+        PAUSE_DATE = #{record.pauseDate,jdbcType=DATE},
+      </if>
+      <if test="record.closeDate != null" >
+        CLOSE_DATE = #{record.closeDate,jdbcType=DATE},
+      </if>
+      <if test="record.realName != null" >
+        REAL_NAME = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardNo != null" >
+        IDCARD_NO = #{record.idcardNo,jdbcType=CHAR},
+      </if>
+      <if test="record.birthdate != null" >
+        BIRTHDATE = #{record.birthdate,jdbcType=DATE},
+      </if>
+      <if test="record.gender != null" >
+        GENDER = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.occupation != null" >
+        OCCUPATION = #{record.occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        TELEPHONE = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailaddress != null" >
+        MAILADDRESS = #{record.mailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null" >
+        ZIPCODE = #{record.zipcode,jdbcType=CHAR},
+      </if>
+      <if test="record.qq != null" >
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{record.lastLoginTime,jdbcType=DATE},
+      </if>
+      <if test="record.lastLoginIp != null" >
+        LAST_LOGIN_IP = #{record.lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account_shawn
+    set ID = #{record.id,jdbcType=INTEGER},
+      RECOMMENDER_ID = #{record.recommenderId,jdbcType=INTEGER},
+      LOGIN_NAME = #{record.loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWD = #{record.loginPasswd,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=CHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      PAUSE_DATE = #{record.pauseDate,jdbcType=DATE},
+      CLOSE_DATE = #{record.closeDate,jdbcType=DATE},
+      REAL_NAME = #{record.realName,jdbcType=VARCHAR},
+      IDCARD_NO = #{record.idcardNo,jdbcType=CHAR},
+      BIRTHDATE = #{record.birthdate,jdbcType=DATE},
+      GENDER = #{record.gender,jdbcType=CHAR},
+      OCCUPATION = #{record.occupation,jdbcType=VARCHAR},
+      TELEPHONE = #{record.telephone,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      MAILADDRESS = #{record.mailaddress,jdbcType=VARCHAR},
+      ZIPCODE = #{record.zipcode,jdbcType=CHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      LAST_LOGIN_TIME = #{record.lastLoginTime,jdbcType=DATE},
+      LAST_LOGIN_IP = #{record.lastLoginIp,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bw.ssm.pojo.AccountShawn" >
+    update account_shawn
+    <set >
+      <if test="recommenderId != null" >
+        RECOMMENDER_ID = #{recommenderId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE = #{pauseDate,jdbcType=DATE},
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE = #{closeDate,jdbcType=DATE},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardNo != null" >
+        IDCARD_NO = #{idcardNo,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null" >
+        BIRTHDATE = #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailaddress != null" >
+        MAILADDRESS = #{mailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE = #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=DATE},
+      </if>
+      <if test="lastLoginIp != null" >
+        LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bw.ssm.pojo.AccountShawn" >
+    update account_shawn
+    set RECOMMENDER_ID = #{recommenderId,jdbcType=INTEGER},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      PAUSE_DATE = #{pauseDate,jdbcType=DATE},
+      CLOSE_DATE = #{closeDate,jdbcType=DATE},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      IDCARD_NO = #{idcardNo,jdbcType=CHAR},
+      BIRTHDATE = #{birthdate,jdbcType=DATE},
+      GENDER = #{gender,jdbcType=CHAR},
+      OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      MAILADDRESS = #{mailaddress,jdbcType=VARCHAR},
+      ZIPCODE = #{zipcode,jdbcType=CHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=DATE},
+      LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
