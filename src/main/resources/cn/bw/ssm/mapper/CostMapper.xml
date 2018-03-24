@@ -288,4 +288,27 @@
       COST_TYPE = #{costType,jdbcType=CHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByCostAll" resultMap="BaseResultMap">
+  select * from cost 
+  <if test="name != null and name == '月租'.toString() and  sort != null and sort == '倒序'.toString()">
+  	 ORDER BY UNIT_COST DESC
+  </if>
+  <if test="name != null and name == '月租'.toString() and  sort != null and sort == '正序'.toString()">
+  	 ORDER BY UNIT_COST ASC
+  </if>
+  <if test="name != null and name == '基费'.toString() and  sort != null and sort == '倒序'.toString()">
+  	 ORDER BY BASE_COST DESC
+  </if>
+  <if test="name != null and name == '基费'.toString() and  sort != null and sort == '正序'.toString()">
+  	 ORDER BY BASE_COST ASC
+  </if>
+  <if test="name != null and name == '时长'.toString() and  sort != null and sort == '倒序'.toString()">
+  	 ORDER BY BASE_DURATION DESC
+  </if>
+  <if test="name != null and name == '时长'.toString() and  sort != null and sort == '正序'.toString()">
+  	 ORDER BY BASE_DURATION ASC
+  </if>
+  limit #{PageUtil.startIndex},#{PageUtil.pageSize}
+  </select>
+  
 </mapper>

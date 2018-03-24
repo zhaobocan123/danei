@@ -3,6 +3,8 @@ package cn.bw.ssm.mapper;
 import cn.bw.ssm.pojo.Cost;
 import cn.bw.ssm.pojo.CostExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CostMapper {
@@ -27,4 +29,8 @@ public interface CostMapper {
     int updateByPrimaryKeySelective(Cost record);
 
     int updateByPrimaryKey(Cost record);
+
+	List<Cost> selectByCostAll(Map map);
+
+	
 }
