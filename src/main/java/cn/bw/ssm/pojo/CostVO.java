@@ -4,6 +4,14 @@ public class CostVO extends Cost {
 	private String name_sort;
 	private String pai_sort;
 	private String page;
+	private String dian_sort;
+	
+	public String getDian_sort() {
+		return dian_sort;
+	}
+	public void setDian_sort(String dian_sort) {
+		this.dian_sort = dian_sort;
+	}
 	public String getPage() {
 		return page;
 	}
