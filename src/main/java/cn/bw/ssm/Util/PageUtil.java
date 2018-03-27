@@ -11,8 +11,21 @@ public class PageUtil {
 	private int prevPage;//上一页
 	private int nextPage;//上一页
 	private int startIndex;//索引起始页
+	private int start;
+	private int end;
 	
-	
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
 	public PageUtil (String currentPage,int pageSize, int totalRows) {
 		//设置当前当前页的值
 		this.getCpage(currentPage);
@@ -26,6 +39,25 @@ public class PageUtil {
 		 this.getNpage();
 		//设置索引的起始位置
 		 this.getStarIndex();
+		 this.start=1;
+		 this.end=5;
+		 //显示5页的算法
+		 //显示5页
+		 if(totalPage<5) {
+			 this.end=this.totalPage;
+		 }else {
+			 //总页数大于5 就要根据当前是第几页来判断start和end了
+			 this.start = this.currentPage -2;
+			 this.end = this.currentPage+2;
+			 if(this.start<0) {
+				this.start=1;
+				this.end=5;
+			 }
+			 if(end>this.totalPage) {
+				 this.end = this.totalPage;
+				 this.start=end-5;
+			 }
+		 }
 		
 	}
 	//当前页
@@ -39,16 +71,15 @@ public class PageUtil {
 	//总页数
 	public void getTPage() {
 		if(this.totalRows%this.pageSize !=0) {
-			System.out.println("总页数1");
 			this.totalPage = this.totalRows/this.pageSize+1;
 		}else {
-			System.out.println("总页数2");
 			this.totalPage = this.totalRows/this.pageSize;
 		}
 	}
 	//索引起始页
 	public void getStarIndex() {
 		this.startIndex=(this.currentPage-1)*this.pageSize;
+		System.out.println(startIndex);
 	}
 	//上一页
 	public void getPpage() {
@@ -112,8 +143,9 @@ public class PageUtil {
 	public String toString() {
 		return "PageUtil [currentPage=" + currentPage + ", pageSize=" + pageSize + ", totalRows=" + totalRows
 				+ ", totalPage=" + totalPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", startIndex="
-				+ startIndex + "]";
+				+ startIndex + ", start=" + start + ", end=" + end + "]";
 	}
+	
 }
 
 
