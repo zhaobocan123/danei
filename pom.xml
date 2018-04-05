@@ -30,7 +30,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
-			<scope>test</scope>
+			<!-- <scope>test</scope> -->
 		</dependency>
 
 		<!-- spring包 core、web、oxm、tx、jdbc、webmvc、aop、context、test -->

@@ -6,13 +6,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../css/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../css/global_color.css" />       
+        <link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath }/netcross/css/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath }/netcross/css/global_color.css" />       
     </head>
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../img/logo.png" alt="logo" class="left"/>
+            <img src="${pageContext.request.contextPath }/netcross/img/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -37,52 +37,71 @@
             <form action="" method="post" class="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
                 <div class="input_info">
-                	<input type="text" name="id" class="readonly" readonly="true" value="1"/>
+                	<input type="text" name="id" class="readonly" readonly="true" value="${co.id }"/>
                 </div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
-                	<input type="text" name="name" class="readonly" readonly="true" value="宽带"/>
+                	<input type="text" name="name" class="readonly" readonly="true" value="${co.name }"/>
                 </div>
                 <div class="text_info clearfix"><span>资费状态：</span></div>
                 <div class="input_info">
                 	<select class="readonly" disabled="true" name="status">
-                		<option value="0">开通</option>
-                		<option value="1">暂停</option>
-                		<option value="2">删除</option>
+                	<c:if test="${co.status eq 1 }">
+                	<option value="0">开通</option>
+                	</c:if>
+                	<c:if test="${co.status eq 0 }">
+                	<option value="1">暂停</option>
+                	</c:if>
+                	<c:if test="${co.status eq 2 }">
+                	<option value="2">删除</option>
+                	</c:if>
                 	</select>
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
+                	<c:if test="${co.costType eq 1 }">
                 	<input type="radio" name="costType"  value="1" disabled="true" checked="checked"/><label>包月</label>
                 	<input type="radio" name="costType"  value="2" disabled="true" /><label>套餐</label>
                 	<input type="radio" name="costType"  value="3" disabled="true" /><label>计时</label>
+                	</c:if>
+                	<c:if test="${co.costType eq 2 }">
+                	<input type="radio" name="costType"  value="1" disabled="true" /><label>包月</label>
+                	<input type="radio" name="costType"  value="2" disabled="true" checked="checked" /><label>套餐</label>
+                	<input type="radio" name="costType"  value="3" disabled="true" /><label>计时</label>
+                	</c:if>
+                	<c:if test="${co.costType eq 3 }">
+                	<input type="radio" name="costType"  value="1" disabled="true" /><label>包月</label>
+                	<input type="radio" name="costType"  value="2" disabled="true" /><label>套餐</label>
+                	<input type="radio" name="costType"  value="3" disabled="true" checked="checked" /><label>计时</label>
+                	</c:if>
+                	
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" name="cost.baseDuration" class="readonly" readonly="true" value="100"/>
+                    <input type="text" name="cost.baseDuration" class="readonly" readonly="true" value="${co.baseDuration }"/>
                     <span>小时</span>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  name="cost.baseCost"  value="10" class="readonly" readonly="true"/>
+                    <input type="text"  name="cost.baseCost"  value="${co.baseCost }" class="readonly" readonly="true"/>
                     <span>元</span>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  name="cost.unitCost" cssClass="readonly" readonly="true" value="10"/>
+                    <input type="text"  name="cost.unitCost" cssClass="readonly" readonly="true" value="${co.unitCost }"/>
                     <span>元/小时</span>
                 </div>
                 <div class="text_info clearfix"><span>创建时间：</span></div>
                 <div class="input_info">
-                	<input type="text"  name="cost.createTime" class="readonly" readonly="true" value="2018-01-01"/>
+                	<input type="text"  name="cost.createTime" class="readonly" readonly="true" value="${co.creatime }"/>
                 </div>      
                 <div class="text_info clearfix"><span>启动时间：</span></div>
                 <div class="input_info">
-                 	<input type="text"  name="cost.startTime" class="readonly" readonly="true" value="2018-01-01"/>
+                 	<input type="text"  name="cost.startTime" class="readonly" readonly="true" value="${co.startime }"/>
                 </div>      
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                	<input type="text"  name="cost.descr" class="width300 height70 readonly" readonly="true" value=""/>
+                	<input type="text"  name="cost.descr" class="width300 height70 readonly" readonly="true" value="${co.descr }"/>
                 </div>      
                 <!--</div> -->                   
                 <div class="button_info clearfix">

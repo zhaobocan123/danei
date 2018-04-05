@@ -10,7 +10,7 @@
     <result column="STATUS" property="status" jdbcType="CHAR" />
     <result column="DESCR" property="descr" jdbcType="VARCHAR" />
     <result column="CREATIME" property="creatime" jdbcType="TIMESTAMP" />
-    <result column="STARTIME" property="startime" jdbcType="DATE" />
+    <result column="STARTIME" property="startime" jdbcType="TIMESTAMP" />
     <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -118,7 +118,7 @@
   <insert id="insertSelective" parameterType="cn.bw.ssm.pojo.Cost" >
     insert into cost
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+      <if test="id == null" >
         ID,
       </if>
       <if test="name != null" >
@@ -133,13 +133,13 @@
       <if test="unitCost != null" >
         UNIT_COST,
       </if>
-      <if test="status != null" >
+      <if test="status == null" >
         STATUS,
       </if>
       <if test="descr != null" >
         DESCR,
       </if>
-      <if test="creatime != null" >
+      <if test="creatime == null" >
         CREATIME,
       </if>
       <if test="startime != null" >
@@ -150,8 +150,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="id == null" >
+        null,
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -165,14 +165,14 @@
       <if test="unitCost != null" >
         #{unitCost,jdbcType=DOUBLE},
       </if>
-      <if test="status != null" >
-        #{status,jdbcType=CHAR},
+      <if test="status == null" >
+       0,
       </if>
       <if test="descr != null" >
         #{descr,jdbcType=VARCHAR},
       </if>
-      <if test="creatime != null" >
-        #{creatime,jdbcType=TIMESTAMP},
+      <if test="creatime == null" >
+        NOW(),
       </if>
       <if test="startime != null" >
         #{startime,jdbcType=DATE},
@@ -263,11 +263,11 @@
       <if test="descr != null" >
         DESCR = #{descr,jdbcType=VARCHAR},
       </if>
-      <if test="creatime != null" >
+      <if test="creatime !=  null" >
         CREATIME = #{creatime,jdbcType=TIMESTAMP},
       </if>
       <if test="startime != null" >
-        STARTIME = #{startime,jdbcType=DATE},
+        STARTIME = NOW(),
       </if>
       <if test="costType != null" >
         COST_TYPE = #{costType,jdbcType=CHAR},

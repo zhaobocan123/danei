@@ -87,13 +87,14 @@
             }
             //删除
             function deleteCost(id) {
+            	
                 var r = window.confirm("确定要删除此资费吗？");
                 if(r)
                 {
                 	//document.getElementById("operate_result_info").style.display = "block";
                  	//window.location.href="deleteCost.action?id="+id;
                  	$.post(
-                		"deleteCost.action",
+                		"deleteCost.do",
                 		{"id":id},
                 		function(data){
                 			var msg="";
@@ -110,7 +111,7 @@
                 			setTimeout(
                 				function(){
                 					var page=$("#page").val();
-                					window.location.href="findCost.action?page="+page;
+                					window.location.href="listCost.do";
                 				},
                 				1500
                 			);
@@ -159,7 +160,7 @@
                         <input type="button" value="基费" class="${vo.dian_sort}"  onclick="sort(this);" />
                         <input type="button" value="时长" class="${vo.dian_sort}"  onclick="sort(this);" />
                     </div>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='toAddCost.action';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='toAddCost.do';" />
                 </div> 
                 <!--启用操作的操作提示-->
                
@@ -185,7 +186,7 @@
                         <c:forEach items="${cost }" var="h">
                         <tr>
                             <td>${h.id }</td>
-                            <td><a href="toCostDetail.action?id=1">长城宽带</a></td>
+                            <td><a href="toCostDetail.do?id=${h.id }">长城宽带</a></td>
                             <td>${h.baseDuration }</td>
                             <td>${h.baseCost}</td>
                             <td>${h.unitCost }</td>
@@ -199,7 +200,7 @@
                             <td>
                                 <input type="button" value="启用" class="btn_start" onclick='startCost(${h.id });' />
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='toModifyCost.do?id=${h.id }&page=${map.PageUtil.currentPage }&dian_sort=${vo.dian_sort }&name_sort=${vo.name_sort }';" />
-                                <input type="button" value="删除" class="btn_delete" onclick='deleteCost(1);' />
+                                <input type="button" value="删除" class="btn_delete" onclick='deleteCost(${h.id });' />
                             </td>
                         </tr>
                         </c:forEach>

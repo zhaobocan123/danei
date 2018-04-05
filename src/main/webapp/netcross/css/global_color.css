@@ -1,11 +1,11 @@
-/* 全局样式 */
+/* 鍏ㄥ眬鏍峰紡 */
 body
 {
     background-image: url(../img/body_bg.png);
     background-color: #0063a0;
 }
 
-/* 页头部分：header */
+/* 椤靛ご閮ㄥ垎锛歨eader */
 #header
 {
     background: url(../img/top_bg.png) no-repeat;
@@ -16,7 +16,7 @@ body
     text-decoration: none;
 }
 
-/* 导航部分：navi */
+/* 瀵艰埅閮ㄥ垎锛歯avi */
 #navi
 {
     background: url(../img/navigation.png) repeat-x;
@@ -102,7 +102,7 @@ body
     background: url(../img/password_out.png) no-repeat;
 }
 
-/* 正文区域：main */
+/* 姝ｆ枃鍖哄煙锛歮ain */
 #main
 {
     background: #e8f3f8;
@@ -110,7 +110,7 @@ body
 }
 
 
-/* 正文：表格部分 */
+/* 姝ｆ枃锛氳〃鏍奸儴鍒� */
 #datalist
 {
     background-color:#fff;
@@ -129,7 +129,7 @@ body
     border: #CCC solid 1px;
 }
 
-/* 表格中显示详细消息 */
+/* 琛ㄦ牸涓樉绀鸿缁嗘秷鎭� */
 div.detail_info
 {
     background-color: #fbf0db;
@@ -137,7 +137,7 @@ div.detail_info
     color: #000;
 }
 
-/* 正文：表单部分（div实现方式） */
+/* 姝ｆ枃锛氳〃鍗曢儴鍒嗭紙div瀹炵幇鏂瑰紡锛� */
 span.required
 {
     color:Red;
@@ -168,7 +168,7 @@ p.hide
    border:1px solid #b4b4b4;
 }
 
-/* 保存操作后的提示消息 */
+/* 淇濆瓨鎿嶄綔鍚庣殑鎻愮ず娑堟伅 */
 div.save_success
 {
     background-color: #fbf0db;
@@ -188,7 +188,7 @@ div.save_fail
     background-position:10px center;
 }
 
-/* 删除操作后的提示消息 */
+/* 鍒犻櫎鎿嶄綔鍚庣殑鎻愮ず娑堟伅 */
 div.operate_success
 {
     background-color: #fdecec;
@@ -208,7 +208,7 @@ div.operate_fail
     background-position:10px center;
 }
 
-/* 正文：分页功能区 */
+/* 姝ｆ枃锛氬垎椤靛姛鑳藉尯 */
 #pages a
 {
     color: #000;
@@ -227,13 +227,13 @@ div.operate_fail
 }
 
 
-/* 页脚部分：footer */
+/* 椤佃剼閮ㄥ垎锛歠ooter */
 #footer
 {
     color: #FFF;
 }
 
-/* 表单上的元素：控件 */
+/* 琛ㄥ崟涓婄殑鍏冪礌锛氭帶浠� */
 input,select
 {
     border:1px solid silver;
@@ -318,7 +318,7 @@ input.sort_asc,input.sort_desc,input.sort_asc:hover,input.sort_desc:hover
     border:0;
 }
 
-/* 主页 */
+/* 涓婚〉 */
 body.index
 {
     background-color: #00629f;
@@ -331,7 +331,7 @@ body.index
 {
     background: url(../img/index_navi_bg.png) repeat-x;
 }
-/* 登录页面 */
+/* 鐧诲綍椤甸潰 */
 body.login
 {
     background-color: #00629f;
@@ -347,7 +347,7 @@ div.login_box table tr td
 {
     color: #FFF;
 }
-/* 错误页面 */
+/* 閿欒椤甸潰 */
 body.error_page
 {
     background-color: #00629f;
@@ -374,7 +374,7 @@ body.error_power_page
 {
     color:#FFF;
 }
-/* 报表页面 */
+/* 鎶ヨ〃椤甸潰 */
 #report_main
 {
     background-color:#8ac1db; 

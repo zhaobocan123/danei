@@ -126,4 +126,54 @@ public class Tariff {
 	
 		return "forward:/cost/listCost.do?pai_sort="+paistort2;
 	}
+	
+
+	//显示详细信息
+	@RequestMapping(value="toCostDetail.do")
+	public ModelAndView show(String id) {
+		
+		Cost co = tar.selectById(Integer.parseInt(id));
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("co",co);
+		mv.setViewName("cost/detail");
+		return mv;
+		
+	}
+	//增加功能页面
+	@RequestMapping(value="toAddCost.do")
+	public ModelAndView toAddCost() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("cost/add");
+		return mv;
+	}
+	
+	
+	//增加功能
+	@RequestMapping(value="addCost.do")
+	public String  addCost(Cost co) throws UnsupportedEncodingException {
+		String name = new String(co.getName().getBytes("iso8859-1"),"utf-8");
+		String descr=new String(co.getDescr().getBytes("iso8859-1"),"utf-8");
+		co.setName(name);
+		co.setDescr(descr);
+		tar.addCost(co);
+		return "forward:/cost/listCost.do";
+	}
+	
+	//删除资费
+	@RequestMapping(value="deleteCost.do")
+	public @ResponseBody String deleteCoset(String id) {
+		Cost co = new Cost();
+		co.setId(Integer.parseInt(id));
+		co.setStatus("2");
+		tar.update(co);
+		return "OK";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

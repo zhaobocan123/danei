@@ -6,9 +6,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>NetCTOSS</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../css/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../css/global_color.css" />
-        <script language="javascript" type="text/javascript" src="../js/jquery-1.4.3.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath }/netcross/css/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="${pageContext.request.contextPath }/netcross/css/global_color.css" />
+        <script language="javascript" type="text/javascript" src="${pageContext.request.contextPath }/netcross/js/jquery-1.4.3.js"></script>
         <script language="javascript" type="text/javascript">
             var nameFlag = false;
             $(function(){
@@ -214,7 +214,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../img/logo.png" alt="logo" class="left"/>
+            <img src="${pageContext.request.contextPath }/netcross/img/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -237,46 +237,46 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功</div>
-            <form action="addCost.action" method="post" class="main_form" id="addForm">
+            <form action="addCost.do" method="post" class="main_form" id="addForm">
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width300" name="cost.name" value="" id="costName"/>
+                    <input type="text" class="width300" name="name" value="" id="costName"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_short" id="nameMsg">50长度的字母、数字、汉字和下划线的组合</div>
+                    <div class="validate_msg_short" id="nameMsg" >50长度的字母、数字、汉字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
-                    <input type="radio" name="cost.costType" value="1" id="monthly" onclick="feeTypeChange(1);" />
+                    <input type="radio" name="costType" value="1" id="monthly" onclick="feeTypeChange(1);" />
                     <label for="monthly">包月</label>
-                    <input type="radio" name="cost.costType" value="2" checked="checked" id="package" onclick="feeTypeChange(2);" />
+                    <input type="radio" name="costType" value="2" checked="checked" id="package" onclick="feeTypeChange(2);" />
                     <label for="package">套餐</label>
-                    <input type="radio" name="cost.costType" value="3" id="timeBased" onclick="feeTypeChange(3);" />
+                    <input type="radio" name="costType" value="3" id="timeBased" onclick="feeTypeChange(3);" />
                     <label for="timeBased">计时</label>
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" name="cost.baseDuration" value="" class="width100" id="baseDurationId"/>
+                    <input type="text" name="baseDuration" value="" class="width100" id="baseDurationId"/>
                     <span class="info">小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long" id="baseDurationMsg">1-600之间的整数</div>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text" name="cost.baseCost"value="" class="width100" id="baseCostId"/>
+                    <input type="text" name="baseCost"value="" class="width100" id="baseCostId"/>
                     <span class="info">元</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long " id="baseCostMsg">0-99999.99之间的数值</div>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text" name="cost.unitCost" value="" class="width100" id="unitCostId"/>
+                    <input type="text" name="unitCost" value="" class="width100" id="unitCostId"/>
                     <span class="info">元/小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long " id="unitCostMsg">0-99999.99之间的数值</div>
                 </div>
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea name="cost.descr" class="width300 height70" id="descrId"></textarea>
+                    <textarea name="descr" class="width300 height70" id="descrId"></textarea>
                     <div class="validate_msg_short " id="descrMsg">100长度的字母、数字、汉字和下划线的组合</div>
                 </div>                    
                 <div class="button_info clearfix">

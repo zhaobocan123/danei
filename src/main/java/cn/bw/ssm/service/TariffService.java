@@ -17,5 +17,9 @@ public interface TariffService {
 	Cost selectByHuiXian(Integer id);
 	//修改数据
 	void update(Cost co);
+	//显示详细信息
+	Cost selectById(int parseInt);
+	//增加功能
+	void addCost(Cost co);
 
 }
